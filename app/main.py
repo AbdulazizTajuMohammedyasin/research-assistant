@@ -1,16 +1,31 @@
 from dotenv import load_dotenv
+
 from app.llm.gemini import create_gemini_llm
 
 
-load_dotenv()
+def main():
+    load_dotenv()
 
-print("Creating LLM...")
+    llm = create_gemini_llm()
 
-llm = create_gemini_llm()
+    print("\nAI Research Assistant")
+    print("Type 'exit' to quit.\n")
+    print("=" * 100)
 
-print("LLM created")
+    while True:
+        question = input("You: ").strip()
 
-response = llm.invoke("Explain RAG in one paragraph.")
+        if question.lower() == "exit":
+            print("Goodbye!")
+            break
 
-print("Response received")
-print(response.text)
+        if not question:
+            continue
+
+        response = llm.invoke(question)
+
+        print(f"\nAI: {response.text}\n")
+
+
+if __name__ == "__main__":
+    main()

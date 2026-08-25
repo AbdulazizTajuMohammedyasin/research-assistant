@@ -1,12 +1,14 @@
 from dotenv import load_dotenv
 
 from app.llm.gemini import create_gemini_llm
+from app.chat.conversation import Conversation
 
 
 def main():
     load_dotenv()
 
     llm = create_gemini_llm()
+    conversation = Conversation()
 
     print("\nAI Research Assistant")
     print("Type 'exit' to quit.\n")
@@ -21,8 +23,10 @@ def main():
 
         if not question:
             continue
-
-        response = llm.invoke(question)
+        
+        conversation.add_user_message(question)
+        response = llm.invoke(conversation.get_messages())
+        conversation.add_ai_message(response.text)
 
         print(f"\nAI: {response.text}\n")
 

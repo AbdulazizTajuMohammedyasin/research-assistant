@@ -1,18 +1,16 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
+from app.llm.gemini import create_gemini_llm
+
 
 load_dotenv()
 
-print("1. Creating LLM...")
+print("Creating LLM...")
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-3.5-flash",
-    temperature=0,
-)
+llm = create_gemini_llm()
 
-print("2.LLM created")
+print("LLM created")
 
 response = llm.invoke("Explain RAG in one paragraph.")
 
-print("3.Response received")
+print("Response received")
 print(response.text)

@@ -11,6 +11,8 @@ langchain-community = "*"
 langchain-pinecone = "*"
 pinecone = "*"
 pypdf = "*"
+langchain-huggingface = "*"
+sentence-transformers = "*"
 
 [dev-packages]
 

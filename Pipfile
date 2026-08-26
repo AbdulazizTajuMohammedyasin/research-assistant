@@ -7,6 +7,10 @@ name = "pypi"
 langchain = "*"
 langchain-google-genai = "*"
 python-dotenv = "*"
+langchain-community = "*"
+langchain-pinecone = "*"
+pinecone = "*"
+pypdf = "*"
 
 [dev-packages]
 

@@ -1,0 +1,15 @@
+from langchain.agents import create_agent
+from app.llm.gemini import create_gemini_llm
+
+from app.tools.knowledge_base import search_knowledge_base
+from app.tools.web_search import web_search
+
+model = create_gemini_llm()
+
+agent = create_agent(
+    model=model,
+    tools=[
+        search_knowledge_base,
+        web_search,
+    ],
+)

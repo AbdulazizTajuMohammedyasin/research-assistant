@@ -1,13 +1,11 @@
 from dotenv import load_dotenv
-
-from app.llm.gemini import create_gemini_llm
 from app.chat.conversation import Conversation
+
 
 
 def main():
     load_dotenv()
-
-    llm = create_gemini_llm()
+    from app.agent.agent import agent
     conversation = Conversation()
 
     print("\nAI Research Assistant")
@@ -25,10 +23,11 @@ def main():
             continue
         
         conversation.add_user_message(question)
-        response = llm.invoke(conversation.get_messages())
-        conversation.add_ai_message(response.text)
-
-        print(f"\nAI: {response.text}\n")
+        response = agent.invoke({"messages": conversation.get_messages()})
+        ai_message = response["messages"][-1]
+        text = ai_message.content[0]["text"]
+        conversation.add_ai_message(text)
+        print(f"\nAI: {text}\n")
 
 
 if __name__ == "__main__":

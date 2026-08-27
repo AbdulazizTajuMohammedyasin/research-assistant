@@ -12,4 +12,18 @@ agent = create_agent(
         search_knowledge_base,
         web_search,
     ],
+    system_prompt="""
+            You are an AI research assistant.
+
+            Use search_knowledge_base when the user asks
+            about uploaded documents or internal knowledge.
+
+            Use web_search for current information.
+
+            Use both tools when comparing internal and
+            external information.
+
+            Always provide a well-structured answer.
+        """,
 )
+

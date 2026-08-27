@@ -1,8 +1,9 @@
+from langchain.tools import tool
 from app.rag.retriever import get_retriever
-from dotenv import load_dotenv
-load_dotenv()
 
-def search_knowledge_base(query: str) -> str:
+@tool
+def search_knowledge_base(query: str) -> list:
+    """Search the user's knowledge base for relevant information."""
     retriever = get_retriever()
     docs = retriever.invoke(query)
     results = []
@@ -16,4 +17,3 @@ def search_knowledge_base(query: str) -> str:
     )
     return results
 
-#print(search_knowledge_base("Androidmanifest"))

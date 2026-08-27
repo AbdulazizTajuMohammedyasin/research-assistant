@@ -1,11 +1,10 @@
+from langchain.tools import tool
 from langchain_community.utilities import SerpAPIWrapper
-from dotenv import load_dotenv
-load_dotenv()
+
 
 search = SerpAPIWrapper()
 
-result = search.run(
-    "latest LangChain updates"
-)
-
-print(result)
+@tool
+def web_search(query: str) -> str:
+    """Search the web for up-to-date information."""
+    return search.run(query)

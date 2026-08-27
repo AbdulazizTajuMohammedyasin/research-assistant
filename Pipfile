@@ -13,6 +13,7 @@ pinecone = "*"
 pypdf = "*"
 langchain-huggingface = "*"
 sentence-transformers = "*"
+google-search-results = "*"
 
 [dev-packages]
 
